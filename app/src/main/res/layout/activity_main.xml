@@ -16,6 +16,37 @@
         android:id="@+id/list_container"
         >
 
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+        <TextView
+            style="@style/list_style"
+            />
+
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton

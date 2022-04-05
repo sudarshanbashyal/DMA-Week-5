@@ -20,8 +20,11 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     List<String> shoppingItems = new ArrayList<>();
+    List<TextView> textViews = new ArrayList<>();
+
     LinearLayout listContainer;
     FloatingActionButton addButton;
+
     public static final String EXTRA_MESSAGE = "com.example.twoactivity.extra.REPLY";
     public static final int MAIN_ACTIVITY_REQUEST= 1;
 
@@ -32,7 +35,11 @@ public class MainActivity extends AppCompatActivity {
 
         listContainer = findViewById(R.id.list_container);
         addButton = findViewById(R.id.floatingActionButton);
-        this.renderList(this.shoppingItems);
+
+        // add all the textviews to an array
+        for(int i=0; i<listContainer.getChildCount(); i++){
+            textViews.add((TextView) listContainer.getChildAt(i));
+        }
     }
 
     @Override
@@ -44,20 +51,16 @@ public class MainActivity extends AppCompatActivity {
                 String reply = data.getStringExtra(SecondActivity.EXTRA_REPLY);
 
                 this.shoppingItems.add(reply);
-                this.renderList(this.shoppingItems);
+                this.renderList(reply);
             }
         }
     }
 
-    private void renderList(List<String> shoppingItems){
-        this.listContainer.removeAllViews();
+    private void renderList(String newItem){
+        // check the number of entires and add new entry according to (e-1) of index, since older entries are already filled
+        int lastAvailableIndex = this.shoppingItems.size()-1 ;
 
-        for (int i = 0; i < shoppingItems.size(); i++) {
-            TextView listItem = new TextView(new ContextThemeWrapper(MainActivity.this, R.style.list_style));
-            listItem.setText(shoppingItems.get(i));
-
-            this.listContainer.addView(listItem);
-        }
+        this.textViews.get(lastAvailableIndex).setText(lastAvailableIndex+1+" - "+newItem);
     }
 
     public void addItem(View view) {
